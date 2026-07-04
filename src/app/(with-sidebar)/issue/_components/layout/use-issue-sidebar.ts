@@ -24,7 +24,7 @@ export const useIssueSidebar = () => {
   const issueId = useIssueId();
   // 토픽 페이지에서는 이슈 데이터 가져오지 않음
   const { isQuickIssue, members } = useIssueData(issueId, !isTopicPage);
-  const { onlineMemberIds } = useIssueStore();
+  const onlineMemberIds = useIssueStore((state) => state.onlineMemberIds);
 
   const { userId: currentUserId } = useIssueIdentity(issueId, {
     enabled: !isTopicPage,

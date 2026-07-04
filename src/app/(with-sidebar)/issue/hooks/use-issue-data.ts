@@ -10,7 +10,7 @@ export function useIssueData(issueId: string, enabled: boolean = true) {
   const status = issue?.status as IssueStatus;
   const isQuickIssue = !issue?.topicId;
 
-  const { isAIStructuring } = useIssueStore();
+  const isAIStructuring = useIssueStore((state) => state.isAIStructuring);
 
   const isCreateIdeaActive = status === ISSUE_STATUS.BRAINSTORMING;
   const isVoteButtonVisible = status === ISSUE_STATUS.VOTE || status === ISSUE_STATUS.SELECT;
