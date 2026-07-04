@@ -13,6 +13,29 @@ on:
       - 'docs/**'
 
 jobs:
+  unit-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'yarn'
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      # ts-jest 컴파일 시 @prisma/client 타입이 필요
+      - name: Generate Prisma Client
+        run: npx prisma generate
+
+      # DB가 필요한 통합 테스트(test/integration)는 제외한 유닛 테스트만 실행
+      - name: Unit tests
+        run: yarn test:unit --ci
+
   build-check:
     runs-on: ubuntu-latest
     steps:

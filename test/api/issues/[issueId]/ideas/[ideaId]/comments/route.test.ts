@@ -123,7 +123,6 @@ describe('POST /api/issues/[issueId]/ideas/[ideaId]/comments', () => {
         type: SSE_EVENT_TYPES.COMMENT_CREATED,
         data: {
           ideaId,
-          commentId: 'comment-1',
           commentCount: 10, // 위에서 모킹한 값
         },
       },

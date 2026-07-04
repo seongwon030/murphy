@@ -9,7 +9,7 @@ const createWrapper = () => {
   // 테스트용 쿼리 클라이언트
   const queryClient = new QueryClient({
     defaultOptions: {
-      queries: { retry: false },
+      queries: { retry: false, retryDelay: 0 },
     },
   });
 
