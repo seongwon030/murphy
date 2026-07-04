@@ -9,6 +9,7 @@
     "lint": "eslint",
     "format": "prettier --write .",
     "test": "jest",
+    "test:unit": "jest --testPathIgnorePatterns=integration",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
     "test:be:cov": "jest test/ --testPathIgnorePatterns='test/components|test/hooks' --collectCoverageFrom='src/app/api/**/*' --collectCoverageFrom='src/lib/**/*' --collectCoverageFrom='src/utils/**/*' --collectCoverageFrom='!src/lib/api/**/*' --coverage --runInBand",
