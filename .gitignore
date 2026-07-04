@@ -49,3 +49,6 @@ next-env.d.ts
 
 .cursorrules
 .vscode/*
+
+# oh-my-claudecode tool state
+/.omc/
