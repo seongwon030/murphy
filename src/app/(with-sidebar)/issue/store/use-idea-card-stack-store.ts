@@ -18,12 +18,20 @@ const createIdeaCardStackStore = (issueId: string) => {
 
         setInitialCardData: (cardIds: string[]) =>
           set((state) => {
+            const valid = new Set(cardIds);
             const newIds = cardIds.filter((id) => !state.cardStack.includes(id));
+            // 로딩 중(빈 목록)엔 pruning 금지 — persist된 순서 보호
+            const pruned =
+              cardIds.length > 0
+                ? state.cardStack.filter((id) => valid.has(id))
+                : state.cardStack;
 
-            if (newIds.length === 0) return state;
+            if (newIds.length === 0 && pruned.length === state.cardStack.length) {
+              return state;
+            }
 
             return {
-              cardStack: [...state.cardStack, ...newIds],
+              cardStack: [...pruned, ...newIds],
             };
           }),
 
