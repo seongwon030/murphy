@@ -14,6 +14,10 @@ COPY . .
 
 ENV NEXT_TELEMETRY_DISABLED=1
 
+# robots.txt / sitemap.xml은 빌드 타임에 생성되므로 BASE_URL이 빌드 단계에 필요하다
+ARG BASE_URL
+ENV BASE_URL=$BASE_URL
+
 # Prisma Client 생성
 RUN npx prisma generate
 
