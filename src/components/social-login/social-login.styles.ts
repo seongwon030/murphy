@@ -5,7 +5,7 @@ export const SocialLoginContainer = styled.div`
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   align-self: center;
   margin-top: 20px;
 `;
