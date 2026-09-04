@@ -93,6 +93,7 @@ const Header = () => {
           <>
             <HeaderButton
               text="다음"
+              dataTourId="next-step-button"
               onClick={handleNextStep}
               onMouseEnter={(e) => {
                 e.stopPropagation();
