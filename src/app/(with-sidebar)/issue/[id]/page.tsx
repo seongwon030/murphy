@@ -22,6 +22,7 @@ import { useProjectsQuery } from '@/hooks/project';
 import { joinIssueAsLoggedInUser } from '@/lib/api/issue';
 import { getActiveDiscussionIdeaIds } from '@/lib/utils/active-discussion-idea';
 import IssueJoinModal from '../_components/issue-join-modal/issue-join-modal';
+import OnboardingTour from '../_components/onboarding-tour/onboarding-tour';
 import {
   useCategoryOperations,
   useDragAndDrop,
@@ -407,6 +408,11 @@ const IssuePage = () => {
           </DragOverlay>
         )}
       </DndContext>
+
+      {/* 첫 방문자 온보딩 투어 (참여 모달이 닫힌 뒤에만) */}
+      <OnboardingTour
+        enabled={!hasError && !isPageLoading && !isOpen && status !== ISSUE_STATUS.CLOSE}
+      />
 
       {!hasError && isPageLoading && <LoadingOverlay />}
       {/* AI 구조화 로딩 오버레이 */}

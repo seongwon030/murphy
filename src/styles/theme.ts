@@ -120,6 +120,7 @@ export const theme = {
     modal: 400, // 모달, 다이얼로그
     popover: 500, // 툴팁, 팝오버
     overlay: 600, // 전역 오버레이
+    tour: 10000, // 온보딩 투어 (사이드바 9999보다 위)
   },
   status: {
     BRAINSTORMING: {

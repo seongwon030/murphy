@@ -29,7 +29,7 @@ const ProgressBar = () => {
   }, [status]);
 
   return (
-    <S.Container>
+    <S.Container data-tour-id="progress-bar">
       {STEP_FLOW.map((step, index) => {
         const isActive = index <= animatedIndex;
         const isLineActive = index < animatedIndex;
@@ -48,6 +48,7 @@ const ProgressBar = () => {
             <S.Circle
               isActive={isActive}
               delay={PROGRESS_BAR_DURATION}
+              data-tour-step={step}
             >
               {index + 1}
               <S.Label
