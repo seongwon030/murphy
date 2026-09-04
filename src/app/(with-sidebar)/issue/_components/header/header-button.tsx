@@ -14,6 +14,7 @@ interface HeaderButtonProps {
   onClick?: (e?: React.MouseEvent) => void;
   onMouseEnter?: MouseEventHandler<HTMLButtonElement>;
   onMouseLeave?: MouseEventHandler<HTMLButtonElement>;
+  dataTourId?: string;
 }
 
 const HeaderButton = ({
@@ -26,6 +27,7 @@ const HeaderButton = ({
   onClick,
   onMouseEnter,
   onMouseLeave,
+  dataTourId,
 }: HeaderButtonProps) => {
   return (
     <S.ButtonContainer
@@ -34,6 +36,7 @@ const HeaderButton = ({
       onClick={onClick}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
+      data-tour-id={dataTourId}
     >
       {imageSrc && (
         <Image
