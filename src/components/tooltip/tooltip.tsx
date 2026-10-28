@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef } from 'react';
+import { useState } from 'react';
 import { arrow, autoUpdate, flip, offset, shift, useFloating } from '@floating-ui/react';
 import { createPortal } from 'react-dom';
 import * as S from './tooltip.styles';
@@ -8,9 +8,15 @@ import { useTooltipStore } from './use-tooltip-store';
 
 export default function Tooltip() {
   const { isOpen, targetNode, text } = useTooltipStore();
-  const arrowRef = useRef(null);
+  // ref 대신 state로 보관: react-hooks/refs 린트가 ref를 함수에 넘기는 걸 오탐으로 잡는다
+  const [arrowEl, setArrowEl] = useState<HTMLDivElement | null>(null);
 
-  const { refs, floatingStyles, middlewareData, placement } = useFloating({
+  const {
+    refs: { setFloating },
+    floatingStyles,
+    middlewareData,
+    placement,
+  } = useFloating({
     placement: 'bottom',
     strategy: 'fixed',
     whileElementsMounted: autoUpdate,
@@ -22,7 +28,7 @@ export default function Tooltip() {
       flip(), // 공간 없으면 위로 뒤집기
       shift(), // 화면 옆으로 안 잘리게 밀기
       arrow({
-        element: arrowRef,
+        element: arrowEl,
       }),
     ],
   });
@@ -41,12 +47,12 @@ export default function Tooltip() {
 
   return createPortal(
     <S.Container
-      ref={refs.setFloating}
+      ref={setFloating}
       style={floatingStyles}
     >
       {text}
       <S.Arrow
-        ref={arrowRef}
+        ref={setArrowEl}
         style={{
           left: arrowX != null ? `${arrowX}px` : '',
           top: arrowY != null ? `${arrowY}px` : '',

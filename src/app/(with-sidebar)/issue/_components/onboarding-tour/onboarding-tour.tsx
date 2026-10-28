@@ -27,7 +27,11 @@ const OnboardingTour = ({ enabled }: OnboardingTourProps) => {
 
   const isFloating = !!anchor && !isAnchorLarge;
 
-  const { refs, floatingStyles } = useFloating({
+  // setFloating을 refs에서 구조분해: react-hooks/refs 린트가 refs.setFloating을 오탐으로 잡는다
+  const {
+    refs: { setFloating },
+    floatingStyles,
+  } = useFloating({
     placement: 'bottom',
     strategy: 'fixed',
     whileElementsMounted: autoUpdate,
@@ -52,9 +56,7 @@ const OnboardingTour = ({ enabled }: OnboardingTourProps) => {
         />
       )}
       <S.Bubble
-        // floating-ui가 넘겨주는 콜백 ref 세터라 ref 값을 읽지 않는다
-        // eslint-disable-next-line react-hooks/refs
-        ref={refs.setFloating}
+        ref={setFloating}
         isCentered={!isFloating}
         style={isFloating ? floatingStyles : undefined}
       >
